@@ -1,0 +1,542 @@
+/* =====================================================
+   SWIFTIE UNIVERSE — CSS
+   Aesthetic: Luxury Dark + Gold Foil + Eras Energy
+   ===================================================== */
+
+:root {
+  --bg: #0d0a1a;
+  --bg2: #130f24;
+  --surface: #1c1630;
+  --surface2: #251e3e;
+  --border: rgba(255,255,255,0.08);
+  --gold: #c8a84b;
+  --gold-light: #f0d080;
+  --text: #f0ead6;
+  --text-dim: #9a8fb0;
+  --accent-pink: #e060a0;
+  --radius: 16px;
+  --header-h: 120px;
+  font-size: 16px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(100, 60, 180, 0.15) 0%, transparent 60%),
+    radial-gradient(ellipse at 80% 100%, rgba(200, 80, 160, 0.1) 0%, transparent 60%);
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* SCROLLBAR */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(200,168,75,0.3); border-radius: 2px; }
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(13, 10, 26, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 20px;
+}
+
+.header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 16px 0 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.logo-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--gold-light);
+  text-transform: uppercase;
+}
+
+.logo-star {
+  color: var(--gold);
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+.tabs {
+  display: flex;
+  border-top: 1px solid var(--border);
+}
+
+.tab {
+  flex: 1;
+  padding: 12px 0;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  position: relative;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 0.25s;
+  border-radius: 2px;
+}
+
+.tab.active {
+  color: var(--gold-light);
+}
+.tab.active::after { transform: scaleX(1); }
+
+.fav-badge {
+  background: var(--accent-pink);
+  color: #fff;
+  font-size: 0.65rem;
+  border-radius: 99px;
+  padding: 1px 6px;
+  font-weight: 500;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* =====================================================
+   MAIN
+   ===================================================== */
+
+main {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 24px 16px 100px;
+}
+
+.view { display: none; }
+.view.active { display: block; }
+
+/* =====================================================
+   ALBUMS
+   ===================================================== */
+
+.albums-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.album-section {
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  background: var(--surface);
+}
+
+.album-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 18px;
+  cursor: pointer;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--album-color) 40%, var(--bg2)) 0%,
+    var(--surface) 100%
+  );
+  transition: filter 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+
+.album-header::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255,255,255,0.03);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.album-header:hover::before { opacity: 1; }
+
+.album-emoji {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5));
+}
+
+.album-info { flex: 1; min-width: 0; }
+
+.album-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+.album-year {
+  font-size: 0.72rem;
+  color: var(--album-accent, #aaa);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.album-toggle {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: transform 0.25s, color 0.2s;
+  flex-shrink: 0;
+}
+.album-toggle.open { transform: rotate(180deg); color: var(--gold); }
+
+/* SONGS LIST */
+.album-songs {
+  border-top: 1px solid var(--border);
+}
+.album-songs.hidden { display: none; }
+
+.song-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 18px;
+  cursor: pointer;
+  transition: background 0.15s;
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  animation: fadeSlideIn 0.3s ease both;
+}
+.song-row:last-child { border-bottom: none; }
+.song-row:hover { background: rgba(255,255,255,0.04); }
+.song-row:active { background: rgba(255,255,255,0.07); }
+
+@keyframes fadeSlideIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.song-number {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  width: 22px;
+  flex-shrink: 0;
+}
+
+.song-name {
+  flex: 1;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.fav-btn {
+  background: none;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--text-dim);
+  padding: 4px 8px;
+  border-radius: 50%;
+  transition: color 0.2s, transform 0.15s;
+  flex-shrink: 0;
+}
+.fav-btn:active { transform: scale(1.3); }
+.fav-btn.active { color: var(--accent-pink); }
+
+/* =====================================================
+   FAVORITES
+   ===================================================== */
+
+.favorites-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--gold-light);
+  letter-spacing: 0.08em;
+  margin-bottom: 6px;
+}
+
+.section-subtitle {
+  font-size: 0.8rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+}
+
+.songs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fav-song-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 16px;
+  animation: fadeSlideIn 0.3s ease both;
+}
+
+.fav-song-info {
+  flex: 1;
+  padding-left: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.fav-song-name {
+  font-size: 0.92rem;
+  color: var(--text);
+}
+
+.fav-album-label {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+}
+
+.fav-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.fav-open-btn, .fav-remove-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.fav-open-btn:hover { background: rgba(200,168,75,0.15); color: var(--gold); }
+.fav-remove-btn:hover { background: rgba(224,96,160,0.15); color: var(--accent-pink); }
+
+/* =====================================================
+   MODAL
+   ===================================================== */
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal.hidden { display: none; }
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.modal.visible .modal-backdrop { opacity: 1; }
+
+.modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: var(--surface2);
+  border-radius: 24px 24px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 28px 24px 40px;
+  transform: translateY(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.modal.visible .modal-card { transform: translateY(0); }
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(255,255,255,0.08);
+  border: none;
+  color: var(--text-dim);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.modal-close:hover { background: rgba(255,255,255,0.15); }
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.modal-album-color {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  flex-shrink: 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+.modal-song-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.2;
+  flex: 1;
+}
+
+.modal-album-name {
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+}
+
+.modal-fav-btn {
+  background: none;
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  font-size: 1.3rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.modal-fav-btn.active {
+  color: var(--accent-pink);
+  border-color: var(--accent-pink);
+  background: rgba(224,96,160,0.1);
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.05em;
+  transition: filter 0.2s, transform 0.15s;
+}
+.action-btn:active { transform: scale(0.98); filter: brightness(0.9); }
+
+.spotify-btn {
+  background: #1DB954;
+  color: #fff;
+}
+.youtube-btn {
+  background: #FF0000;
+  color: #fff;
+}
+.lyrics-btn {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (min-width: 480px) {
+  .modal-card {
+    border-radius: 24px;
+    margin-bottom: 24px;
+  }
+  .modal {
+    align-items: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-text { font-size: 1.2rem; }
+  .album-name { font-size: 0.95rem; }
+}

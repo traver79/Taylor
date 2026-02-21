@@ -87,6 +87,49 @@ body {
   opacity: 0.7;
 }
 
+.dedication {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin: 6px 0 10px;
+  padding: 8px 20px;
+  background: linear-gradient(135deg, rgba(200,168,75,0.08), rgba(224,96,160,0.08));
+  border: 1px solid rgba(200,168,75,0.2);
+  border-radius: 99px;
+  animation: dedicationGlow 3s ease-in-out infinite;
+}
+
+@keyframes dedicationGlow {
+  0%, 100% { border-color: rgba(200,168,75,0.2); box-shadow: 0 0 0 transparent; }
+  50%       { border-color: rgba(224,96,160,0.4); box-shadow: 0 0 12px rgba(224,96,160,0.12); }
+}
+
+.dedication-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 0.82rem;
+  color: var(--text-dim);
+  letter-spacing: 0.04em;
+}
+
+.dedication-text strong {
+  color: var(--gold-light);
+  font-style: normal;
+  font-weight: 600;
+}
+
+.dedication-hearts {
+  color: var(--accent-pink);
+  font-size: 0.7rem;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  50%       { transform: scale(1.25); }
+}
+
 .tabs {
   display: flex;
   border-top: 1px solid var(--border);
